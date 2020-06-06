@@ -1,6 +1,41 @@
 .features {
-	background: $color-grey-light-2;
 	grid-column: center; /* center-start / center-end */
 
-	
+	margin: 15rem 0;
+
+	display: grid;
+	// grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	/* implicit row tracks - deafults to auto -> min-content */
+	gap: 6rem;
+	align-items: start; 
+	/* 
+	each feature to start at end and finish when their content ends (gives them the height of their own content), instead of stretching it to fill the entire row, which creates uneven gaps between h4 and p across the grid items
+	grid gaps will still remain at the same place
+	*/
+}
+
+.feature {
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	row-gap: 1.5rem;
+	column-gap: 2.5rem;
+
+
+	&__icon {
+		fill: $color-primary;
+		width: 4.5rem;
+		height: 4.5rem;
+		/* 
+		we position the icon instead of the text bcs by making it span across all rows, h4 will define the height of its own row, instead of icon defining it, which would be too big for the h4; 
+		it also moves the text to 2nd columm */
+		grid-row: 1 / span 2;
+		/* 
+		-1 means end of explicit grid, but we didnt define any grid-rows so it wont work */
+		transform: translateY(-1rem);
+	}
+
+	&__text {
+		font-size: 1.7rem;
+	}
 }
