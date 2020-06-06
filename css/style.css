@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  /* 10px */ }
+
+body {
+  font-size: 1.6rem;
+  font-family: "Nunito", sans-serif;
+  color: #6d5d4b;
+  font-weight: 300;
+  line-height: 1.6; }
+
+.container {
+  display: grid;
+  /* auto is the default -> means min-content */
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+  /* 
+	we want to center 8 columns between the sidebar and right side of the display, so we added 2 more rows with 1fr at each side */
+  /* 
+	updated 1fr to minmax(6rem,1fr), because we dont want them to collapse when theres no more space, we set the min width so the 8 columns in the middle will start to shrink till their min of min-content */
+  grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; }
+  .container > * {
+    font-size: 3rem;
+    padding: 40px; }
+
+.sidebar {
+  background: #c69963;
+  grid-column: sidebar;
+  grid-row: 1 / -1; }
+
+.header {
+  background: #54483a;
+  grid-column: full-start / col-end 6; }
+
+.realtors {
+  background: #101d2c;
+  grid-column: col-start 7 / full-end;
+  /* col-start 7 / full; */ }
+
+.features {
+  background: #aaa;
+  grid-column: center;
+  /* center-start / center-end */ }
+
+.story__pictures {
+  background: #b28451;
+  grid-column: full / col-end 4; }
+
+.story__content {
+  background: #f9f7f6;
+  grid-column: col-start 5 / full; }
+
+.homes {
+  background: #101d2c;
+  grid-column: center;
+  /* center-start / center-end */ }
+
+.gallery {
+  background: #54483a;
+  grid-column: full;
+  /* full-start / full-end */ }
+
+.footer {
+  background: #101d2c;
+  grid-column: full;
+  /* full-start / full-end */ }
