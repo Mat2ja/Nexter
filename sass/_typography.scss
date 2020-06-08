@@ -59,7 +59,11 @@
 	display: inline-block;
 	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.19, 0.95) 0ms;
 
-	&::before {
+	&:hover {
+		background: $color-primary-dark;
+	}
+
+	/* &::before {
 		content: "";
 		position: absolute;
 		box-sizing: border-box;
@@ -79,5 +83,5 @@
 
 	&:active::before {
 		transform: translateZ(0);
-	}
+	} */
 }

@@ -68,21 +68,30 @@ body {
 	based on my CodePen (https://codepen.io/mat2ja/details/mdeygxQ) */
   position: relative;
   display: inline-block;
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.19, 0.95) 0ms; }
-  .btn::before {
-    content: "";
-    position: absolute;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #c69963;
-    transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.19, 0.95); }
-  .btn:active, .btn:hover::before {
-    transform: translate3d(0.6rem, 0.6rem, 0); }
-  .btn:active::before {
-    transform: translateZ(0); }
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.19, 0.95) 0ms;
+  /* &::before {
+		content: "";
+		position: absolute;
+		box-sizing: border-box;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 2px solid $color-primary;
+		transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.19, 0.95);
+		// transform: translate3d(0.6rem, 0.6rem, 0);
+	}
+
+	&:active,
+	&:hover::before {
+		transform: translate3d(0.6rem, 0.6rem, 0);
+	}
+
+	&:active::before {
+		transform: translateZ(0);
+	} */ }
+  .btn:hover {
+    background: #b28451; }
 
 .mb-sm {
   margin-bottom: 2rem; }
@@ -182,9 +191,64 @@ body {
   margin-bottom: 4rem; }
 
 .homes {
-  background: #101d2c;
   grid-column: center;
-  /* center-start / center-end */ }
+  /* center-start / center-end */
+  margin: 15rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 7rem; }
+
+.home {
+  background: #f9f7f6;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 3.5rem; }
+  .home__img {
+    width: 100%;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    z-index: 1; }
+  .home__like {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    fill: #c69963;
+    height: 2rem;
+    width: 2rem;
+    justify-self: end;
+    z-index: 1;
+    margin: 1rem; }
+  .home__name {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    justify-self: center;
+    align-self: end;
+    z-index: 2;
+    transform: translateY(50%);
+    /* 
+		if we hadn't had placed it in the first row, and only used transform to translate it up, it would have left behind unused space. 
+		That's why we used this alternative method > placing it to first tow, aligning to bottom, translating down */
+    width: 80%;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 1.25rem;
+    background-color: #101d2c;
+    color: white; }
+  .home__location, .home__rooms, .home__area, .home__price {
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center; }
+    .home__location svg, .home__rooms svg, .home__area svg, .home__price svg {
+      fill: #c69963;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem; }
+  .home__btn {
+    grid-column: 1 / -1; }
+  .home__location, .home__rooms {
+    margin-top: 2rem; }
 
 .gallery {
   background: #54483a;

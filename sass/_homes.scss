@@ -1,4 +1,91 @@
 .homes {
-	background: $color-secondary;
 	grid-column: center; /* center-start / center-end */
+	margin: 15rem 0;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	gap: 7rem;
+}
+
+.home {
+	background: $color-grey-light-1;
+
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	row-gap: 3.5rem;
+
+	&__img {
+		width: 100%;
+		grid-column: 1 / -1;
+		// have to specify the exaxt row so that it overlaps with the heart icon, as image would get automatically placed in 2nd row after putting icon in 1st row
+		grid-row: 1 / 2;
+		z-index: 1;
+	}
+
+	&__like {
+		grid-row: 1 / 2;
+		grid-column: 2 / 3;
+		fill: $color-primary;
+		height: 2rem;
+		width: 2rem;
+		justify-self: end;
+		z-index: 1;
+		margin: 1rem;
+	}
+
+	&__name {
+		grid-column: 1 / -1;
+		// place in the first row so it overlaps the image
+		grid-row: 1 / 2; 
+		justify-self: center;
+		// align to bottom of its row
+		align-self: end;
+		z-index: 2;
+		transform: translateY(50%);
+		/* 
+		if we hadn't had placed it in the first row, and only used transform to translate it up, it would have left behind unused space. 
+		That's why we used this alternative method > placing it to first tow, aligning to bottom, translating down */
+		
+		width: 80%;
+		font-family: $font-display;
+		font-size: 1.6rem;
+		font-weight: 400;
+		text-align: center;
+		padding: 1.25rem;
+		background-color: $color-secondary;
+		color: white;
+
+
+	}
+
+	&__location,
+	&__rooms,
+	&__area,
+	&__price {
+		font-size: 1.5rem;
+		margin-left: 2rem;
+		
+		display: flex;
+		align-items: center;
+
+		svg {
+			fill: $color-primary;
+			height: 2rem;
+			width: 2rem;
+			margin-right: 1rem;
+		}
+
+		p {
+		}
+	}
+
+	&__btn {
+		grid-column: 1 / -1;
+	}
+
+	&__location,
+	&__rooms {
+		// workaround to get it further from home__name, as the row-gap between them isn't as it should bcs of the translateY
+		margin-top: 2rem; 
+	}
 }
