@@ -13,7 +13,6 @@ html {
   /* 10px */ }
 
 body {
-  font-size: 1.6rem;
   font-family: "Nunito", sans-serif;
   color: #6d5d4b;
   font-weight: 300;
@@ -179,7 +178,31 @@ body {
 .realtors {
   background: #101d2c;
   grid-column: col-start 7 / full-end;
-  /* col-start 7 / full; */ }
+  /* col-start 7 / full; */
+  padding: 3rem;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  /* centers the heading */
+  row-gap: 2rem;
+  /* basically margin-bottom after the heading */ }
+  .realtors__list {
+    display: grid;
+    grid-template-columns: min-content max-content;
+    /* no line breaks because of max-content */
+    column-gap: 2rem;
+    row-gap: 5vh;
+    align-items: center;
+    /* center the items in each cell vertically; centers the text */ }
+  .realtors__img {
+    width: 7rem;
+    display: block;
+    border-radius: 50%; }
+  .realtors__sold {
+    text-transform: uppercase;
+    color: #aaa;
+    margin-top: -3px; }
 
 .features {
   grid-column: center;
