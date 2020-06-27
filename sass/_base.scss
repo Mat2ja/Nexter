@@ -14,6 +14,12 @@ $color-grey-dark-2: #6d5d4b;
 $font-primary: "Nunito", sans-serif;
 $font-display: "Josefin Sans", sans-serif;
 
+// BREAKPOINTS
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px
+$bp-small: 37.5em; // 600px
+
 * {
 	margin: 0;
 	padding: 0;
@@ -28,6 +34,10 @@ $font-display: "Josefin Sans", sans-serif;
 html {
 	box-sizing: border-box;
 	font-size: 62.5%; /* 10px */
+
+	@media only screen and (max-width: $bp-largest) {
+		font-size: 50%; /* 8px */
+	}
 }
 
 body {
@@ -53,5 +63,30 @@ body {
 		[center-end]
 		minmax(6rem, 1fr) [full-end];
 
-	
+	@media only screen and (max-width: $bp-large) {
+		/* change position of sidebar */
+		/* add new row */
+		grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+		/* remove first colummn */
+		grid-template-columns:
+			[sidebar-end full-start] minmax(6rem, 1fr)
+			[center-start]
+			repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+			[center-end]
+			minmax(6rem, 1fr) [full-end];
+	}
+
+	@media only screen and (max-width: $bp-medium) {
+		/* add a new row for the realtors (3rd row) */
+		/* make header span over the entire viewport height (100vh - sidebar height) */
+		/* change 5th row from 40vw to min-content */
+		// grid-template-rows: 6rem calc(100vh - 6rem) min-content min-content min-content repeat(3, min-content);
+		// everythign after the 2nd row is min-content, aka auto, so we delete those and let implicit grid make all the work
+		grid-template-rows: 6rem calc(100vh - 6rem);
+	}
+}
+
+::selection {
+	background: $color-primary;
+	color: $color-grey-light-1;
 }

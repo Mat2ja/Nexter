@@ -11,6 +11,10 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
   /* 10px */ }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 50%;
+      /* 8px */ } }
 
 body {
   font-family: "Nunito", sans-serif;
@@ -27,6 +31,23 @@ body {
   /* 
 	updated 1fr to minmax(6rem,1fr), because we dont want them to collapse when theres no more space, we set the min width so the 8 columns in the middle will start to shrink till their min of min-content */
   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; }
+  @media only screen and (max-width: 62.5em) {
+    .container {
+      /* change position of sidebar */
+      /* add new row */
+      grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+      /* remove first colummn */
+      grid-template-columns: [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; } }
+  @media only screen and (max-width: 50em) {
+    .container {
+      /* add a new row for the realtors (3rd row) */
+      /* make header span over the entire viewport height (100vh - sidebar height) */
+      /* change 5th row from 40vw to min-content */
+      grid-template-rows: 6rem calc(100vh - 6rem); } }
+
+::selection {
+  background: #c69963;
+  color: #f9f7f6; }
 
 .heading-1, .heading-2, .heading-3, .heading-4 {
   font-family: "Josefin Sans", sans-serif;
@@ -116,6 +137,12 @@ body {
   grid-row: 1 / -1;
   display: flex;
   justify-content: center; }
+  @media only screen and (max-width: 62.5em) {
+    .sidebar {
+      grid-column: 1 / -1;
+      grid-row: 1 / 2;
+      justify-content: flex-end;
+      align-items: center; } }
 
 .nav-btn {
   border: none;
@@ -133,6 +160,14 @@ body {
     transform: translateY(-1.5rem); }
   .nav-btn::after {
     transform: translateY(1.3rem); }
+  @media only screen and (max-width: 62.5em) {
+    .nav-btn {
+      margin-top: 0;
+      margin-right: 2.5rem; }
+      .nav-btn::before {
+        transform: translateY(-1.2rem); }
+      .nav-btn::after {
+        transform: translateY(1rem); } }
 
 .header {
   grid-column: full-start / col-end 6;
@@ -142,11 +177,19 @@ body {
   padding: 8rem;
   padding-top: 4rem;
   display: grid;
-  grid-template-rows: 1fr min-content 6rem 1fr;
-  grid-template-columns: max-content;
+  grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
+  grid-template-columns: minmax(min-content, max-content);
+  /* cini se da radi isto kao da ovo i nismo napisali ?! */
   /* makes logo centered according to the width of the column (defined by the widest content of some row) */
   row-gap: 1.5rem;
   justify-content: center; }
+  @media only screen and (max-width: 50em) {
+    .header {
+      grid-column: full;
+      /* full-start / full-end, 1 / -1, etc...*/ } }
+  @media only screen and (max-width: 37.5em) {
+    .header {
+      padding: 5rem; } }
   .header__logo {
     height: 3rem;
     justify-self: center; }
@@ -169,9 +212,11 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
-    justify-items: center; }
+    justify-items: center;
+    align-items: center; }
     .header__seenon-logo img {
-      height: 2.5rem;
+      max-height: 2.5rem;
+      max-width: 100%;
       filter: brightness(70%);
       /* make it little darker */ }
 
@@ -187,6 +232,14 @@ body {
   /* centers the heading */
   row-gap: 2rem;
   /* basically margin-bottom after the heading */ }
+  @media only screen and (max-width: 50em) {
+    .realtors {
+      grid-column: full;
+      padding: 5rem 2rem;
+      row-gap: 3rem; } }
+  @media only screen and (max-width: 50em) {
+    .realtors {
+      row-gap: 2rem; } }
   .realtors__list {
     display: grid;
     grid-template-columns: min-content max-content;
@@ -195,6 +248,13 @@ body {
     row-gap: 5vh;
     align-items: center;
     /* center the items in each cell vertically; centers the text */ }
+    @media only screen and (max-width: 50em) {
+      .realtors__list {
+        grid-template-columns: repeat(3, min-content max-content); } }
+    @media only screen and (max-width: 37.5em) {
+      .realtors__list {
+        grid-template-columns: min-content max-content;
+        row-gap: 4rem; } }
   .realtors__img {
     width: 7rem;
     display: block;
@@ -240,16 +300,25 @@ body {
 .story__pictures {
   grid-column: full / col-end 4;
   background: linear-gradient(rgba(198, 153, 99, 0.5), rgba(198, 153, 99, 0.5)), url(../img/back.jpg);
+  background-size: cover;
   display: grid;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(6, 1fr);
   align-items: center; }
+  @media only screen and (max-width: 50em) {
+    .story__pictures {
+      grid-column: full;
+      padding: 6rem; } }
 
 .story__img--1 {
   width: 100%;
   grid-row: 2 / 6;
   grid-column: 2 / 6;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1); }
+  @media only screen and (max-width: 50em) {
+    .story__img--1 {
+      grid-column: 1 / 5;
+      grid-row: 1 / -1; } }
 
 .story__img--2 {
   width: 115%;
@@ -257,6 +326,10 @@ body {
   grid-column: 4 / 7;
   z-index: 20;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2); }
+  @media only screen and (max-width: 50em) {
+    .story__img--2 {
+      grid-row: 1 / -1;
+      width: 100%; } }
 
 .story__content {
   background: #f9f7f6;
@@ -269,6 +342,11 @@ body {
   display: grid;
   align-content: center;
   justify-items: start; }
+  @media only screen and (max-width: 50em) {
+    .story__content {
+      grid-column: full;
+      /* place it before the pictures */
+      grid-row: 5 / 6; } }
 
 .story__text {
   font-size: 1.5rem;
@@ -282,6 +360,12 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 7rem; }
+  @media only screen and (max-width: 62.5em) {
+    .homes {
+      gap: 5rem; } }
+  @media only screen and (max-width: 50em) {
+    .homes {
+      gap: 4rem; } }
 
 .home {
   background: #f9f7f6;
