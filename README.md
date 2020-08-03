@@ -5,3 +5,8 @@ Third and final project of [Advanced CSS and Sass Udemy course](https://www.udem
 Built entirely with CSS Grid
 
 ### [Live Demo](https://mat2ja.github.io/nexter/)
+
+<img src='img/screenshot.png'>
+
+
+
